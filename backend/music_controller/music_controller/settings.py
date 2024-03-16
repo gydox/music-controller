@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     # Library
     'rest_framework',
-    
+    'corsheaders',
+
     # My Apps
     'api.apps.ApiConfig',
 ]
