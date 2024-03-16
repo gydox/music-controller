@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import HomePage from "./pages/HomePage";
 
 import axios from "axios";
 axios.defaults.xsrfCookieName = "csrftoken";
