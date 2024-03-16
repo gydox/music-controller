@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -6,7 +6,8 @@ import "./App.css";
 import axios from "axios";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.withCredentials = true;
+
+// axios.defaults.withCredentials = true;
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000",
@@ -14,6 +15,13 @@ const client = axios.create({
 
 function App() {
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/room")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
