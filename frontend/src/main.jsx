@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.jsx";
 import CreateRoomPage from "./pages/CreateRoomPage.jsx";
 import RoomJoinPage from "./pages/RoomJoinPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import Room from "./pages/Room.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/create_room",
     element: <CreateRoomPage />,
+  },
+  {
+    path: "/room/:roomCode",
+    element: <Room />,
   },
 ]);
 
