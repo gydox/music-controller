@@ -1,8 +1,10 @@
 import React from "react";
 import { TextField, Button, Grid, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+const navigateTo = useNavigate();
+
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -27,8 +29,11 @@ export default function RoomJoinPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        // navigateTo("/room/" + response.data.code);
+        if (response.ok) {
+          navigateTo("/room/" + roomCode);
+        } else {
+          setError({ error: "Room not found" });
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
