@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     element: <CreateRoomPage />,
   },
   {
+    path: "/join_room",
+    element: <RoomJoinPage />,
+  },
+  {
     path: "/room/:roomCode",
     element: <Room />,
   },
