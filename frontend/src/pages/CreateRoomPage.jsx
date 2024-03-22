@@ -10,6 +10,9 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { useState } from "react";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 export default function CreateRoomPage(props) {
   const defaultVotes = 2;
@@ -27,17 +30,23 @@ export default function CreateRoomPage(props) {
   };
 
   const handleRoomButtonPressed = () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        guest_can_pause: guestCanPause,
-        votes_to_skip: votesToSkip,
-      }),
+    const requestData = {
+      guest_can_pause: guestCanPause,
+      votes_to_skip: votesToSkip,
     };
-    fetch("http://127.0.0.1:8000/api/create_room", requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+
+    axios
+      .post("http://localhost:8000/api/create_room", requestData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
