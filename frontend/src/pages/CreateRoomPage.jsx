@@ -25,7 +25,6 @@ export default function CreateRoomPage() {
 
   const handleVotesChange = (e) => {
     setVotesToSkip(e.target.value);
-    console.log("handled votes change");
   };
 
   const handleGuestCanPauseChange = (e) => {
@@ -45,7 +44,6 @@ export default function CreateRoomPage() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         navigateTo("/room/" + response.data.code);
       })
       .catch((error) => {
