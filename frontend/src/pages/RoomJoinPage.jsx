@@ -3,13 +3,14 @@ import { TextField, Button, Grid, Typography } from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-const navigateTo = useNavigate();
 
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default function RoomJoinPage() {
+  const navigateTo = useNavigate();
+
   const [roomCode, setRoomCode] = useState("");
   const [error, setError] = useState("");
 
