@@ -88,7 +88,10 @@ class UserInRoom(APIView):
         room_code = None
 
         if 'room_code' in self.request.session.keys():
-            room_code = self.request.session.get('room_code')
+            if not Room.objects.filter(code=room_code).exists():
+                del self.request.session['room_code']
+            else:
+                room_code = self.request.session.get('room_code')
 
         data = {
             'room_code': room_code
