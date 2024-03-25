@@ -13,10 +13,15 @@ export default function HomePage(props) {
   const [roomCode, setRoomCode] = useState(null);
 
   useEffect(() => {
+    console.log("running this function");
     axios
       .get("http://localhost:8000/api/user_in_room")
       .then((response) => {
+        console.log(response.data);
         setRoomCode(response.data.room_code);
+        if (roomCode != null) {
+          navigateTo("/room/" + roomCode);
+        }
       })
       .catch((error) => {
         console.error("Error fetching room data:", error);
