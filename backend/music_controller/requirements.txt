@@ -3,11 +3,14 @@ autopep8==2.0.4
 Django==5.0.3
 django-cors-headers==4.3.1
 djangorestframework==3.14.0
+execnet==2.0.2
 iniconfig==2.0.0
+model-bakery==1.17.0
 packaging==24.0
 pluggy==1.4.0
 pycodestyle==2.11.1
 pytest==8.1.1
 pytest-django==4.8.0
+pytest-xdist==3.5.0
 pytz==2024.1
 sqlparse==0.4.4
