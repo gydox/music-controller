@@ -32,15 +32,18 @@ export default function RoomJoinPage() {
       .then((response) => {
         console.log(response);
         if ((response.status = 200)) {
-          console.log("response is ok! going to ", roomCode);
+          console.log(1);
+
           navigateTo("/room/" + roomCode);
         } else {
-          console.log("response is not ok!");
           setError("Room not found");
+          console.log(2);
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
+        setError("Invalid room code");
+        console.log(error);
+        console.log(3);
       });
   };
 
