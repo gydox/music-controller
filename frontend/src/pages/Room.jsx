@@ -19,6 +19,10 @@ export default function Room(props) {
   const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
+    getRoomDetails();
+  }, [params.roomCode]);
+
+  const getRoomDetails = () => {
     axios
       .get("http://localhost:8000/api/get_room" + `?code=${params.roomCode}`)
       .then((response) => {
@@ -31,7 +35,7 @@ export default function Room(props) {
         // console.error("Error fetching room data:", error);
         navigateTo("/");
       });
-  }, [params.roomCode]);
+  };
 
   const leaveButtonPressed = () => {
     axios
@@ -68,9 +72,20 @@ export default function Room(props) {
             votesToSkip={votesToSkip}
             guestCanPause={guestCanPause}
             roomCode={params.roomCode}
+            updateCallback={getRoomDetails}
           ></CreateRoomPage>
         </Grid>
-        <Grid item xs={12} align="center"></Grid>
+        <Grid item xs={12} align="center">
+          <Grid item xs={12} align="center">
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={() => setShowSettings(false)}
+            >
+              Close
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
     );
   };
