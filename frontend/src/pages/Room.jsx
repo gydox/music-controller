@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Grid, Button, Typography } from "@material-ui/core";
+import { Grid, Button, Typography } from "@mui/material";
 import axios from "axios";
 import CreateRoomPage from "./CreateRoomPage";
 axios.defaults.withCredentials = true;
