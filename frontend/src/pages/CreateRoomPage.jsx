@@ -11,6 +11,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useState } from "react";
 import axios from "axios";
+import { Collapse, Alert } from "@mui/material";
 
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -70,12 +71,12 @@ export default function CreateRoomPage(props) {
         if ((response.status = 200)) {
           setSuccessMsg("Room updated successfully!");
         } else {
-          setErrorMsg("Room updated successfully!");
+          setErrorMsg("Error updating room");
         }
         props.updateCallback();
       })
       .catch((error) => {
-        console.error("Error:", error);
+        setErrorMsg("Error 400: Bad Request");
       });
   };
 
@@ -120,6 +121,29 @@ export default function CreateRoomPage(props) {
 
   return (
     <Grid container spacing={1}>
+      <Grid item xs={12} align="center">
+        <Collapse in={errorMsg != "" || successMsg != ""}>
+          {successMsg != "" ? (
+            <Alert
+              severity="success"
+              onClose={() => {
+                setSuccessMsg("");
+              }}
+            >
+              {successMsg}
+            </Alert>
+          ) : (
+            <Alert
+              severity="error"
+              onClose={() => {
+                setErrorMsg("");
+              }}
+            >
+              {errorMsg}
+            </Alert>
+          )}
+        </Collapse>
+      </Grid>
       <Grid item xs={12} align="center">
         <Typography component="h4" variant="h4">
           {title}
